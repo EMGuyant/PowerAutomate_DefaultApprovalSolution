@@ -1,0 +1,20 @@
+name: Export Default Approval Solution
+# Call the reusable workflow release-solution-with-inputs.yml
+# Release your solution to default when you create a new release.
+
+on: 
+   workflow_dispatch:      
+
+jobs:
+  Export-DefaultApproval-Solution:
+    uses: ./.github/workflows/export-solution-reusable.yml
+    with:
+      # You can specify the solution name here
+      SOLUTION_NAME: ApprovalWorkflowSolution
+      # Update your actual cloud instance here (Public, UsGov, UsGovHigh, UsGovDoD)
+      CLOUD_TYPE: 'Public'
+    secrets:
+      AAD_APP_SECRET: ${{ secrets.AAD_APP_SECRET }}
+      AAD_CLIENT_ID: ${{ secrets.AAD_CLIENT_ID }}
+      AAD_TENANT_ID: ${{ secrets.AAD_TENANT_ID }}
+      DEV_ENVIRONMENT_URL: ${{ secrets.DEV_ENVIRONMENT_URL }}
