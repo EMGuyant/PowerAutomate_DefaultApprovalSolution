@@ -49,20 +49,32 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users",
               "connectionName": "shared_office365users",
-              "operationId": "MyProfile_V2"
+              "operationId": "MyProfile_V2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
             },
             "parameters": {},
             "authentication": {
-              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
-              "type": "Raw"
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
             }
           }
+        },
+        "Compose": {
+          "runAfter": {
+            "Get_my_profile_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7059c9ae-4339-4be6-8953-9d4ab179161e"
+          },
+          "type": "Compose",
+          "inputs": "@outputs('Get_my_profile_(V2)')?['body/aboutMe']"
         }
       }
     },
-    "templateName": null
+    "templateName": ""
   },
   "schemaVersion": "1.0.0.0"
 }
