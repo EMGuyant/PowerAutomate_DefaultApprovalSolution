@@ -11,7 +11,7 @@ jobs:
     uses: ./.github/workflows/release-to-production-reusable.yml
     with:
       # The name of the solution file to publish to production
-      SOLUTION_NAME: DefaultApproval
+      SOLUTION_NAME: ApprovalWorkflowSolution
       
       # Public, UsGov, UsGovHigh, UsGovDod
       CLOUD_TYPE: 'Public' 
