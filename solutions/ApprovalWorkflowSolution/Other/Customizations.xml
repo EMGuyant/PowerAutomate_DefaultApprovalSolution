@@ -20,7 +20,7 @@
       <statuscode>1</statuscode>
     </connectionreference>
     <connectionreference connectionreferencelogicalname="dev_eg_sharedoffice365users_d7272">
-      <connectionreferencedisplayname>Office 365 Users ApprovalWorkflowSolution-d7272</connectionreferencedisplayname>
+      <connectionreferencedisplayname>Office 365 Users</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365users</connectorid>
       <iscustomizable>1</iscustomizable>
       <statecode>0</statecode>
