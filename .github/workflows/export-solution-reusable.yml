@@ -76,6 +76,7 @@ jobs:
         tenant-id: ${{ secrets.AAD_TENANT_ID }}
         cloud: ${{ inputs.CLOUD_TYPE }}
         solution-name: ${{ inputs.SOLUTION_NAME }}
+        managed: true
         solution-output-file: ${{ inputs.SOLUTION_EXPORTS_FOLDER }}${{ inputs.SOLUTION_NAME }}.zip
 
     - name: unpack-solution action
