@@ -62,49 +62,36 @@ jobs:
       with:
         lfs: true
 
-#    - name: Pack solution
-#      uses: microsoft/powerplatform-actions/pack-solution@v0
-#      with:
-#        solution-folder: ${{ inputs.SOLUTION_SOURCE_FOLDER}}/${{ inputs.SOLUTION_NAME }}
-#        solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
-#        solution-type: Unmanaged
-
- #   - name: Import solution as unmanaged to build env
- #     uses: microsoft/powerplatform-actions/import-solution@v0
- #     with:
- #       environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
- #       app-id: ${{ secrets.AAD_CLIENT_ID }}
- #       client-secret: ${{ secrets.AAD_APP_SECRET }}
- #       tenant-id: ${{ secrets.AAD_TENANT_ID }}
- #       cloud: ${{inputs.CLOUD_TYPE}}
- #       solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
- #       force-overwrite: true
- #       publish-changes: true
- 
-    - name: export-solution action as managed
-      uses: microsoft/powerplatform-actions/export-solution@v0
+    - name: Pack solution
+      uses: microsoft/powerplatform-actions/pack-solution@v0
       with:
-        environment-url: ${{ secrets.DEV_ENVIRONMENT_URL }}
+        solution-folder: ${{ inputs.SOLUTION_SOURCE_FOLDER}}/${{ inputs.SOLUTION_NAME }}
+        solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
+        solution-type: Unmanaged
+
+    - name: Import solution as unmanaged to build env
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
         app-id: ${{ secrets.AAD_CLIENT_ID }}
         client-secret: ${{ secrets.AAD_APP_SECRET }}
         tenant-id: ${{ secrets.AAD_TENANT_ID }}
-        cloud: ${{ inputs.CLOUD_TYPE }}
+        cloud: ${{inputs.CLOUD_TYPE}}
+        solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
+        force-overwrite: true
+        publish-changes: true
+    
+    - name: Export solution as managed
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
+        app-id: ${{ secrets.AAD_CLIENT_ID }}
+        client-secret: ${{ secrets.AAD_APP_SECRET }} 
+        tenant-id: ${{ secrets.AAD_TENANT_ID }}
+        cloud: ${{inputs.CLOUD_TYPE}}
         solution-name: ${{ inputs.SOLUTION_NAME }}
         managed: true
         solution-output-file: ${{ inputs.SOLUTION_SHIPPING_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
-    
-#    - name: Export solution as managed
-#      uses: microsoft/powerplatform-actions/export-solution@v0
-#      with:
-#        environment-url: ${{secrets.DEV_ENVIRONMENT_URL}}
-#        #environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
-#        app-id: ${{ secrets.AAD_CLIENT_ID }}
-#        client-secret: ${{ secrets.AAD_APP_SECRET }} 
-#        tenant-id: ${{ secrets.AAD_TENANT_ID }}
-#        cloud: ${{inputs.CLOUD_TYPE}}
-#        solution-name: ${{ inputs.SOLUTION_NAME }}
-#        managed: true
-#        solution-output-file: ${{ inputs.SOLUTION_SHIPPING_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
 
     - name: Upload the ready to ship solution to GH artifact store
       uses: actions/upload-artifact@v2
