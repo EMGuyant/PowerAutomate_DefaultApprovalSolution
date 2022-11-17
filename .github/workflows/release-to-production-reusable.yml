@@ -69,23 +69,23 @@ jobs:
         solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
         solution-type: Unmanaged
 
-#    - name: Import solution as unmanaged to build env
-#      uses: microsoft/powerplatform-actions/import-solution@v0
-#      with:
-#        environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
-#        app-id: ${{ secrets.AAD_CLIENT_ID }}
-#        client-secret: ${{ secrets.AAD_APP_SECRET }}
-#        tenant-id: ${{ secrets.AAD_TENANT_ID }}
-#        cloud: ${{inputs.CLOUD_TYPE}}
-#        solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
-#        force-overwrite: true
-#        publish-changes: true
+    - name: Import solution as unmanaged to build env
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      with:
+        environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
+        app-id: ${{ secrets.AAD_CLIENT_ID }}
+        client-secret: ${{ secrets.AAD_APP_SECRET }}
+        tenant-id: ${{ secrets.AAD_TENANT_ID }}
+        cloud: ${{inputs.CLOUD_TYPE}}
+        solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
+        force-overwrite: true
+        publish-changes: true
 
     - name: Export solution as managed
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
-        environment-url: ${{secrets.DEV_ENVIRONMENT_URL}}
-        #environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
+        #environment-url: ${{secrets.DEV_ENVIRONMENT_URL}}
+        environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
         app-id: ${{ secrets.AAD_CLIENT_ID }}
         client-secret: ${{ secrets.AAD_APP_SECRET }} 
         tenant-id: ${{ secrets.AAD_TENANT_ID }}
