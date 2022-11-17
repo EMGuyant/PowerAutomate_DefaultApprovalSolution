@@ -84,7 +84,7 @@ jobs:
     - name: Export solution as managed
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
-        enironment-url: ${{ secrets.DEV_ENVIRONMENT_URL }}
+        environment-url: ${{ secrets.DEV_ENVIRONMENT_URL }}
         #environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
         app-id: ${{ secrets.AAD_CLIENT_ID }}
         client-secret: ${{ secrets.AAD_APP_SECRET }} 
