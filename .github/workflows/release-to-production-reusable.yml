@@ -78,10 +78,10 @@ jobs:
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
         environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
-        ###app-id: ${{secrets.AAD_CLIENT_ID}}
-        ###client-secret: ${{ secrets.AAD_APP_SECRET }}
-        user-name: CONNECTION_USER_OWNER_U
-        password-secret: CONNECTION_USER_OWNER_P
+        app-id: ${{secrets.AAD_CLIENT_ID}}
+        client-secret: ${{ secrets.AAD_APP_SECRET }}
+        ###user-name: CONNECTION_USER_OWNER_U
+        ###password-secret: CONNECTION_USER_OWNER_P
         tenant-id: ${{secrets.AAD_TENANT_ID}}
         cloud: ${{inputs.CLOUD_TYPE}}
         solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
@@ -92,10 +92,10 @@ jobs:
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
         environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
-        ###app-id: ${{secrets.AAD_CLIENT_ID}}
-        ###client-secret: ${{ secrets.AAD_APP_SECRET }} 
-        user-name: CONNECTION_USER_OWNER_U
-        password-secret: CONNECTION_USER_OWNER_P
+        app-id: ${{secrets.AAD_CLIENT_ID}}
+        client-secret: ${{ secrets.AAD_APP_SECRET }} 
+        ###user-name: CONNECTION_USER_OWNER_U
+        ###password-secret: CONNECTION_USER_OWNER_P
         tenant-id: ${{secrets.AAD_TENANT_ID}}
         cloud: ${{inputs.CLOUD_TYPE}}
         solution-name: ${{ inputs.SOLUTION_NAME }}
@@ -128,10 +128,10 @@ jobs:
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
         environment-url: ${{secrets.PRODUCTION_ENVIRONMENT_URL}}
-        ###app-id: ${{secrets.AAD_CLIENT_ID}}
-        ###client-secret: ${{ secrets.AAD_APP_SECRET }}
-        user-name: CONNECTION_USER_OWNER_U
-        password-secret: CONNECTION_USER_OWNER_P
+        app-id: ${{secrets.AAD_CLIENT_ID}}
+        client-secret: ${{ secrets.AAD_APP_SECRET }}
+        ###user-name: CONNECTION_USER_OWNER_U
+        ###password-secret: CONNECTION_USER_OWNER_P
         tenant-id: ${{secrets.AAD_TENANT_ID}}
         cloud: ${{inputs.CLOUD_TYPE}}
         solution-file: ${{ inputs.SOLUTION_RELEASE_FOLDER}}/${{ inputs.SOLUTION_NAME }}_managed.zip
