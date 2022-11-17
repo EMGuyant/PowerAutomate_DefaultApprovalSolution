@@ -15,7 +15,7 @@ on:
       SOLUTION_SHIPPING_FOLDER:
         description: 'folder name for staging the exported solution *do not change*'        
         type: string
-        default: out/ship
+        default: out/ship/
       SOLUTION_OUTBOUND_FOLDER:
         description: 'staging the unpacked solution folder before check-in *do not change*'
         type: string
@@ -72,9 +72,9 @@ jobs:
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
         environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
-        app-id: ${{ secrets.AAD_CLIENT_ID }}
+        app-id: ${{secrets.AAD_CLIENT_ID}}
         client-secret: ${{ secrets.AAD_APP_SECRET }}
-        tenant-id: ${{ secrets.AAD_TENANT_ID }}
+        tenant-id: ${{secrets.AAD_TENANT_ID}}
         cloud: ${{inputs.CLOUD_TYPE}}
         solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
         force-overwrite: true
@@ -84,9 +84,9 @@ jobs:
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
         environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
-        app-id: ${{ secrets.AAD_CLIENT_ID }}
+        app-id: ${{secrets.AAD_CLIENT_ID}}
         client-secret: ${{ secrets.AAD_APP_SECRET }} 
-        tenant-id: ${{ secrets.AAD_TENANT_ID }}
+        tenant-id: ${{secrets.AAD_TENANT_ID}}
         cloud: ${{inputs.CLOUD_TYPE}}
         solution-name: ${{ inputs.SOLUTION_NAME }}
         managed: true
@@ -96,7 +96,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: managedSolutions
-        path: ${{ inputs.SOLUTION_SHIPPING_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
+        path: ${{ inputs.SOLUTION_SHIPPING_FOLDER}}/  #${{ inputs.SOLUTION_NAME }}.zip
 
   release-to-staging:
     needs: [ convert-to-managed ]
@@ -118,10 +118,10 @@ jobs:
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
         environment-url: ${{secrets.PRODUCTION_ENVIRONMENT_URL}}
-        app-id: ${{ secrets.AAD_CLIENT_ID }}
+        app-id: ${{secrets.AAD_CLIENT_ID}}
         client-secret: ${{ secrets.AAD_APP_SECRET }}
-        tenant-id: ${{ secrets.AAD_TENANT_ID }}
+        tenant-id: ${{secrets.AAD_TENANT_ID}}
         cloud: ${{inputs.CLOUD_TYPE}}
-        solution-file: ${{ inputs.SOLUTION_RELEASE_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
+        solution-file: ${{ inputs.SOLUTION_RELEASE_FOLDER}}/${{ inputs.SOLUTION_NAME }}_managed.zip
         force-overwrite: true
         publish-changes: true
