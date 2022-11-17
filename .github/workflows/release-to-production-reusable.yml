@@ -80,19 +80,31 @@ jobs:
  #       solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
  #       force-overwrite: true
  #       publish-changes: true
-
-    - name: Export solution as managed
+ 
+    - name: export-solution action as managed
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
-        environment-url: ${{secrets.DEV_ENVIRONMENT_URL}}
-        #environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
+        environment-url: ${{ secrets.DEV_ENVIRONMENT_URL }}
         app-id: ${{ secrets.AAD_CLIENT_ID }}
-        client-secret: ${{ secrets.AAD_APP_SECRET }} 
+        client-secret: ${{ secrets.AAD_APP_SECRET }}
         tenant-id: ${{ secrets.AAD_TENANT_ID }}
-        cloud: ${{inputs.CLOUD_TYPE}}
+        cloud: ${{ inputs.CLOUD_TYPE }}
         solution-name: ${{ inputs.SOLUTION_NAME }}
         managed: true
         solution-output-file: ${{ inputs.SOLUTION_SHIPPING_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
+    
+#    - name: Export solution as managed
+#      uses: microsoft/powerplatform-actions/export-solution@v0
+#      with:
+#        environment-url: ${{secrets.DEV_ENVIRONMENT_URL}}
+#        #environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
+#        app-id: ${{ secrets.AAD_CLIENT_ID }}
+#        client-secret: ${{ secrets.AAD_APP_SECRET }} 
+#        tenant-id: ${{ secrets.AAD_TENANT_ID }}
+#        cloud: ${{inputs.CLOUD_TYPE}}
+#        solution-name: ${{ inputs.SOLUTION_NAME }}
+#        managed: true
+#        solution-output-file: ${{ inputs.SOLUTION_SHIPPING_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
 
     - name: Upload the ready to ship solution to GH artifact store
       uses: actions/upload-artifact@v2
