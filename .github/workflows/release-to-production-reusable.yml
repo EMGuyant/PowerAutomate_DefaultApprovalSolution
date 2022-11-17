@@ -43,9 +43,12 @@ on:
       AAD_TENANT_ID:
         description: 'The tenant ID of the AAD application for authentication'
         required: true
-      BUILD_ENVIRONMENT_URL:
-        description: 'Build environment url.'
-        required: true      
+      ###BUILD_ENVIRONMENT_URL:
+        ###description: 'Build environment url.'
+        ###required: true   
+      DEV_ENVIRONMENT_URL:
+        description: 'Development environment url.'
+        required: true
       PRODUCTION_ENVIRONMENT_URL: 
         description: 'Production environment url.'
         required: true  
@@ -66,32 +69,33 @@ jobs:
       uses: microsoft/powerplatform-actions/pack-solution@v0
       with:
         solution-folder: ${{ inputs.SOLUTION_SOURCE_FOLDER}}/${{ inputs.SOLUTION_NAME }}
-        solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
-        solution-type: Unmanaged
+        #solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
+        solution-file: ${{ inputs.SOLUTION_SHIPPING_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
+        solution-type: Managed
 
-    - name: Import solution as unmanaged to build env
-      uses: microsoft/powerplatform-actions/import-solution@v0
-      with:
-        environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
-        app-id: ${{ secrets.AAD_CLIENT_ID }}
-        client-secret: ${{ secrets.AAD_APP_SECRET }}
-        tenant-id: ${{ secrets.AAD_TENANT_ID }}
-        cloud: ${{inputs.CLOUD_TYPE}}
-        solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
-        force-overwrite: true
-        publish-changes: true
+###    - name: Import solution as unmanaged to build env
+###      uses: microsoft/powerplatform-actions/import-solution@v0
+###      with:
+###        environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
+###        app-id: ${{ secrets.AAD_CLIENT_ID }}
+###        client-secret: ${{ secrets.AAD_APP_SECRET }}
+###        tenant-id: ${{ secrets.AAD_TENANT_ID }}
+###        cloud: ${{inputs.CLOUD_TYPE}}
+###        solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
+###        force-overwrite: true
+###        publish-changes: true
     
-    - name: Export solution as managed
-      uses: microsoft/powerplatform-actions/export-solution@v0
-      with:
-        environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
-        app-id: ${{ secrets.AAD_CLIENT_ID }}
-        client-secret: ${{ secrets.AAD_APP_SECRET }} 
-        tenant-id: ${{ secrets.AAD_TENANT_ID }}
-        cloud: ${{inputs.CLOUD_TYPE}}
-        solution-name: ${{ inputs.SOLUTION_NAME }}
-        managed: true
-        solution-output-file: ${{ inputs.SOLUTION_SHIPPING_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
+###    - name: Export solution as managed
+###      uses: microsoft/powerplatform-actions/export-solution@v0
+###      with:
+###        environment-url: ${{secrets.DEV_ENVIRONMENT_URL}}
+###        app-id: ${{ secrets.AAD_CLIENT_ID }}
+###        client-secret: ${{ secrets.AAD_APP_SECRET }} 
+###        tenant-id: ${{ secrets.AAD_TENANT_ID }}
+###        cloud: ${{inputs.CLOUD_TYPE}}
+###        solution-name: ${{ inputs.SOLUTION_NAME }}
+###        managed: true
+###        solution-output-file: ${{ inputs.SOLUTION_SHIPPING_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
 
     - name: Upload the ready to ship solution to GH artifact store
       uses: actions/upload-artifact@v2
