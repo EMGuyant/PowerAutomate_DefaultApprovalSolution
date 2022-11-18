@@ -5,7 +5,8 @@ name: Release Default Approval Solution
 on:
   release:
       types: [created]        
-
+  workflow_dispatch:
+  
 jobs:
   Release-DefaultApproval-solution:
     uses: ./.github/workflows/release-to-production-reusable.yml
