@@ -19,6 +19,27 @@
       <statecode>0</statecode>
       <statuscode>1</statuscode>
     </connectionreference>
+    <connectionreference connectionreferencelogicalname="dev_eg_Outlook">
+      <connectionreferencedisplayname>Outlook</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="dev_eg_sharedoffice365_0b2fb">
+      <connectionreferencedisplayname>Office 365 Outlook ApprovalWorkflowSolution-0b2fb</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="dev_eg_sharedoffice365_8986c">
+      <connectionreferencedisplayname>Office 365 Outlook ApprovalWorkflowSolution-8986c</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
     <connectionreference connectionreferencelogicalname="dev_eg_sharedoffice365users_d7272">
       <connectionreferencedisplayname>Office 365 Users</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365users</connectorid>

@@ -9,6 +9,15 @@
         "api": {
           "name": "shared_office365users"
         }
+      },
+      "shared_office365": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "dev_eg_Outlook"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
       }
     },
     "definition": {
@@ -71,6 +80,34 @@
           },
           "type": "Compose",
           "inputs": "@outputs('Get_my_profile_(V2)')?['body/aboutMe']"
+        },
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "13d85ded-f682-470e-8b9f-a22503836bde"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/To": "EMGuyant@02pby.onmicrosoft.com",
+              "emailMessage/Subject": "Testing",
+              "emailMessage/Body": "<p>Testing</p>",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
         }
       }
     },
