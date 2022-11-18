@@ -1,0 +1,20 @@
+{
+  "EnvironmentVariables": [],
+  "ConnectionReferences": [
+    {
+      "LogicalName": "dev_eg_Approvals",
+      "ConnectionId": "",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_approvals"
+    },
+    {
+      "LogicalName": "dev_eg_sharedoffice365users_d7272",
+      "ConnectionId": "14c8355173fb4aae9ac98912190400b1",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+    },
+    {
+      "LogicalName": "dev_eg_SharePointConnectionRef",
+      "ConnectionId": "26887cdd94604e0c83b37453acbc0b09",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+    }
+  ]
+}
