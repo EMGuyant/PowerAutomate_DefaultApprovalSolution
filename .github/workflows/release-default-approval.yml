@@ -13,7 +13,8 @@ jobs:
     with:
       # The name of the solution file to publish to production
       SOLUTION_NAME: ApprovalWorkflowSolution
-      
+      USE_DEPLOYMENT_FILE: true
+      DEPLOYMENT_SETTINGS_FILE: "././DeploymentSettingsDev.json"
       # Public, UsGov, UsGovHigh, UsGovDod
       CLOUD_TYPE: 'Public' 
     secrets:
