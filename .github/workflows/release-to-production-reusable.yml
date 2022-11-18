@@ -32,6 +32,14 @@ on:
         description: 'The cloud type (Public, UsGov, UsGovHigh, UsGovDoD)'
         type: string
         required: true
+      USE_DEPLOYMENT_FILE:
+        description: 'T/F to use a deployment file for connection references and environment variables'
+        type: string
+        required: false
+      DEPLOYMENT_SETTINGS_FILE:
+        description: 'Path and name of deployment setting files'
+        type: string
+        required: false
     secrets:
       AAD_APP_SECRET:
         description: 'The secret of the AAD application for authentication'
@@ -78,10 +86,10 @@ jobs:
       uses: microsoft/powerplatform-actions/import-solution@main
       with:
         environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
-        ###app-id: ${{secrets.AAD_CLIENT_ID}}
-        ###client-secret: ${{ secrets.AAD_APP_SECRET }}
-        user-name: AlexW@02pby.onmicrosoft.com
-        password-secret: ${{ secrets.CONNECTION_USER_OWNER_P }}
+        app-id: ${{secrets.AAD_CLIENT_ID}}
+        client-secret: ${{ secrets.AAD_APP_SECRET }}
+        ###user-name: AlexW@02pby.onmicrosoft.com
+        ###password-secret: ${{ secrets.CONNECTION_USER_OWNER_P }}
         tenant-id: ${{secrets.AAD_TENANT_ID}}
         cloud: ${{inputs.CLOUD_TYPE}}
         solution-file: ${{ inputs.SOLUTION_OUTBOUND_FOLDER}}/${{ inputs.SOLUTION_NAME }}.zip
@@ -92,10 +100,10 @@ jobs:
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
         environment-url: ${{secrets.BUILD_ENVIRONMENT_URL}}
-        ###app-id: ${{secrets.AAD_CLIENT_ID}}
-        ###client-secret: ${{ secrets.AAD_APP_SECRET }} 
-        user-name: ${{secrets.CONNECTION_USER_OWNER_U}}
-        password-secret: ${{secrets.CONNECTION_USER_OWNER_P}}
+        app-id: ${{secrets.AAD_CLIENT_ID}}
+        client-secret: ${{ secrets.AAD_APP_SECRET }} 
+        ###user-name: ${{secrets.CONNECTION_USER_OWNER_U}}
+        ###password-secret: ${{secrets.CONNECTION_USER_OWNER_P}}
         tenant-id: ${{secrets.AAD_TENANT_ID}}
         cloud: ${{inputs.CLOUD_TYPE}}
         solution-name: ${{ inputs.SOLUTION_NAME }}
@@ -128,12 +136,14 @@ jobs:
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
         environment-url: ${{secrets.PRODUCTION_ENVIRONMENT_URL}}
-        ###app-id: ${{secrets.AAD_CLIENT_ID}}
-        ###client-secret: ${{ secrets.AAD_APP_SECRET }}
-        user-name: ${{secrets.CONNECTION_USER_OWNER_U}}
-        password-secret: ${{secrets.CONNECTION_USER_OWNER_P}}
+        app-id: ${{secrets.AAD_CLIENT_ID}}
+        client-secret: ${{ secrets.AAD_APP_SECRET }}
+        ###user-name: ${{secrets.CONNECTION_USER_OWNER_U}}
+        ###password-secret: ${{secrets.CONNECTION_USER_OWNER_P}}
         tenant-id: ${{secrets.AAD_TENANT_ID}}
         cloud: ${{inputs.CLOUD_TYPE}}
         solution-file: ${{ inputs.SOLUTION_RELEASE_FOLDER}}/${{ inputs.SOLUTION_NAME }}_managed.zip
+        use-deployment-settings-file: ${{ inputs.USE_DEPLOYMENT_FILE }}
+        deployment-settings-file: ${{ inputs.DEPLOYMENT_SETTINGS_FILE }}
         force-overwrite: true
         publish-changes: true
