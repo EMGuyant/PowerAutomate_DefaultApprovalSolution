@@ -7,6 +7,11 @@
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_approvals"
     },
     {
+      "LogicalName": "dev_eg_Outlook",
+      "ConnectionId": "39a9528f64bc4e338a9034f9e66ec8b9",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+    },
+    {
       "LogicalName": "dev_eg_sharedoffice365users_d7272",
       "ConnectionId": "14c8355173fb4aae9ac98912190400b1",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
